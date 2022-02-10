@@ -1,0 +1,10 @@
+// 该文件通过route-tool脚本自动生成。📌请勿手动修改
+import staticRoute from './staticRoute'
+
+export { default as callImmediate } from './callImmediate'
+export const routes = [<%data.forEach(item=>{%>
+  {
+    name: '<%=item.name%>',
+    path: '<%=item.path%>',
+    component: () => import(/* webpackChunkName: "oms" */ '@/<%=item.path%>')
+  },<%})%>]
