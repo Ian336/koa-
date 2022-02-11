@@ -29,7 +29,6 @@ module.exports=(params)=>{
     })
   }
   function createDir(to, from) {
-    //不存在,就创建
     fs.mkdir(to, function () {
       var package = ejs.render(
         fs.readFileSync(path.join(__dirname, '../template/package.ejs'), {
@@ -45,8 +44,10 @@ module.exports=(params)=>{
     //判断文件是否有,有就删除再创建
     fs.access(to, (err) => {
       if (err) {
+        //无
         createDir(to, from)
       } else {
+        //有
         fs.rmdir(to, function () {
           createDir(to, from)
         })
